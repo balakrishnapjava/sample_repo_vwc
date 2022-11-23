@@ -31,7 +31,7 @@ public class EmployeeController {
     public List < Employee1 > getAllEmployees() {
         return employeeRepository.findAll();
     }
-
+employee.setEmailId(employeeDetails.getEmailId());
     /*@GetMapping("/employees/{id}")
     public ResponseEntity < Employee1 > getEmployeeById
     (@PathVariable(value = "id") Long employeeId)
@@ -66,6 +66,11 @@ public class EmployeeController {
         employee.setEmailId(employeeDetails.getEmailId());
         employee.setLastName(employeeDetails.getLastName());
         employee.setFirstName(employeeDetails.getFirstName());
+		/*RQ_1361-Code changes - Start*/		
+		employee.setEmailId(employeeDetails.getEmailId());
+        employee.setLastName(employeeDetails.getLastName());
+        employee.setFirstName(employeeDetails.getFirstName());
+		/*RQ_1361-Code changes - End*/
         final Employee1 updatedEmployee = employeeRepository.save(employee);
         return ResponseEntity.ok(updatedEmployee);
     }
@@ -77,6 +82,7 @@ public class EmployeeController {
         Employee1 employee = employeeRepository.findById(employeeId)
             .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + employeeId));
 
+employee.setEmailId(employeeDetails.getEmailId());
         employeeRepository.delete(employee);
         Map < String, Boolean > response = new HashMap < > ();
         response.put("deleted", Boolean.TRUE);
